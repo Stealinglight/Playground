@@ -1,0 +1,17 @@
+
+{
+    "fileLocations": [
+        {
+            "URIPrefixes": [
+                "s3://cluster-data-agg/"
+            ]
+        }
+    ],
+    "globalUploadSettings": {
+        "format": "CSV",
+        "delimiter": ",",
+        "textqualifier": "'",
+        "containsHeader": "true"
+    }
+}
+                            
