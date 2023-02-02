@@ -10,6 +10,7 @@ import socket
 from tqdm import tqdm
 
 ip_addresses = []
+unreachable = []
 
 # Check if the input is a list or line by line
 while True:
@@ -26,13 +27,22 @@ while True:
 
 # Ping each IP address in the list
 for ip_address in tqdm(ip_addresses, desc='Pinging IP Addresses'):
-    reply = subprocess.run(['ping', '-c', '4', ip_address], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
+    reply = subprocess.run(
+        ['ping', '-c', '4', ip_address], stdout=subprocess.PIPE, stderr=subprocess.PIPE
+    )
     if reply.returncode == 0:
         print(f'\033[32m \nCamera {ip_address} is online.\033[0m\n{reply.stdout.decode()}')
     else:
+        unreachable.append(ip_address)
         print(f'\033[31m \nCamera {ip_address} is unreachable.\033[0m\n{reply.stderr.decode()}')
 
+# Summarize and sort the unreachable results
+if unreachable:
+    unreachable = sorted(unreachable)
+    print('\033[31m \nUnreachable IP addresses:\n')
+    for ip in unreachable:
+        print(ip)
+else:
+    print(f'\033[32m \nAll Cameras are online.\n')
+
 print('\nFinished\n')
-
-
