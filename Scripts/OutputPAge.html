@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Execute Command</title>
+</head>
+<body>
+    <h1>Execute Command</h1>
+    <form id="command-form">
+        <label for="command">Command:</label>
+        <input type="text" id="command" name="command">
+        <button type="submit">Execute</button>
+    </form>
+    <div id="output"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function() {
+            $('#command-form').submit(function(event) {
+                event.preventDefault();
+                const command = $('#command').val();
+                $.ajax({
+                    url: 'API_GATEWAY_ENDPOINT',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({command: command}),
+                    success: function(data) {
+                        $('#output').html('<pre>' + data + '</pre>');
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        $('#output').html('<p>Error: ' + xhr.responseText + '</p>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
