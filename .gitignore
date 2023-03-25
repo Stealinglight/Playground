@@ -130,10 +130,9 @@ dmypy.json
 
 # Testing Data
 TestingDATA/
-Data Science/
 Secrets/
 Testing Data/
 
 # OS Data
 .DS_Store
-.DS_Store
+
