@@ -3,14 +3,13 @@
     "fileLocations": [
         {
             "URIPrefixes": [
-                "s3://cluster-data-agg/"
+                "s3://is2ticketmetrics/EH_ticketdata/"
             ]
         }
     ],
     "globalUploadSettings": {
         "format": "CSV",
         "delimiter": ",",
-        "textqualifier": "'",
         "containsHeader": "true"
     }
 }
